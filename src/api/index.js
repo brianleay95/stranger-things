@@ -1,10 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE = 'https://jsonplace-univclone.herokuapp.com'
+const BASE = "http://clever-neumann-583.herokuapp.com";
 
-export async function getUsers() {
+// this is an example for an api call with axios
+
+export async function loginUser(username, password) {
   try {
-    const { data } = await axios.get(`${ BASE }/users`);
+    const { data } = await axios.post(`${BASE}/user/login`, {
+      username: username,
+      password: password,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function registerUser(username, password) {
+  try {
+    const { data } = await axios.post(`${BASE}/user/register`, {
+      username: username,
+      password: password,
+    });
     return data;
   } catch (error) {
     throw error;

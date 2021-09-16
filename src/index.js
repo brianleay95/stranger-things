@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { fetchingAllThePosts } from "./Posts";
+
+console.log(fetchingAllThePosts())
 
 import {
   BrowserRouter as Router,

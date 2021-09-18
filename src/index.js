@@ -14,7 +14,7 @@ import {Header, Navbar} from "./components";
 const App = () => {
   return (
     <div id="App">
-      <h1>Hello, World</h1>
+      <h1>Low Ball</h1>
       <Header />
       <Navbar />
       <Posts />

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { fetchingAllThePosts } from "./Posts";
-
-console.log(fetchingAllThePosts())
+import Posts from "./Posts";
 
 import {
   BrowserRouter as Router,
@@ -19,6 +17,7 @@ const App = () => {
       <h1>Hello, World</h1>
       <Header />
       <Navbar />
+      <Posts />
     </div>
   );
 };

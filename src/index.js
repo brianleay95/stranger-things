@@ -11,14 +11,19 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import {Header, Navbar} from "./components";
+import {Header, Navbar, Logout} from "./components";
 
 const App = () => {
+
+  const [loginCred, setLoginCred] = useState(null);
+
   return (
     <div id="App">
       <h1>Hello, World</h1>
       <Header />
-      <Navbar />
+      <Navbar setLoginCred = {setLoginCred}/>
+      
+      <Logout />
     </div>
   );
 };

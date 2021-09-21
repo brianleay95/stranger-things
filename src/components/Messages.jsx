@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {fetchUserMessages} from "./api"
 
-const Messages = () => {
+const Messages = (loginCred) => {
   const [myMessages, setMyMessages] = useState([]);
 
-  async function fetchMyMessages() {
-    try {
-      const response = await axios.get(
-        "http://clever-neumann-583.herokuapp.com/posts",
-        {
-          headers: {
-            "auth-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTNmYmM2Y2M3ODUwYTAwMDQ2MDljN2QiLCJpYXQiOjE2MzE1NjcwMzF9.ZPCDJv1rpQV7l--K7vrR_PNNqLppgHjGL9fjIKqnCkI",
-          },
-        }
-      );
-      setMyMessages(response.data);
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   useEffect(() => {
-    fetchMyMessages();
+    setMyMessages(fetchUserMessages(loginCred));
   }, []);
 
   return (
-    <div className="messages-main-container">
-      
+    <div key={myMessages._id} className="messages-main-container">
+      <h1>My Messages</h1>
+      {myMessages.length
+        ? myMessages.map((message) => {
+            return (
+              <div key={message._id} className="messages-card">
+                <h3>{myMessages.fromUser}</h3>
+                <p>{myMessages.post.title}</p>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Posts = () => {
 
   return (
     <div className="posts-main-container">
-      <h1>Posts</h1>
+      <h1>All Posts</h1>
       {allPosts.length
         ? allPosts.map((post) => {
             return (

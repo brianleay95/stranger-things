@@ -5,6 +5,9 @@ import { registerUser } from "../api";
 import { storeToken } from "../auth";
 
 const Register = ({ setIsLoading, setIsLoggedIn }) => {
+  if(isLoggedIn) 
+    return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 

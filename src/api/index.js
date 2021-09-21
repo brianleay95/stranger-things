@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../auth";
 
 const BASE = "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT";
 
@@ -16,12 +17,12 @@ export async function loginUser(username, password) {
   }
 }
 
-export async function fetchUserPosts(token) {
+export async function fetchUserPosts() {
   try {
     const { data } = await axios.get(`${BASE}/user/me`, {
       headers: {
         "auth-token":
-          {token},
+          getToken(),
       },
     });
     return data.posts;
@@ -30,12 +31,12 @@ export async function fetchUserPosts(token) {
   }
 }
 
-export async function fetchUserMessages(token) {
+export async function fetchUserMessages(aToken) {
   try {
     const { data } = await axios.get(`${BASE}/user/me`, {
       headers: {
         "auth-token":
-          {token},
+          getToken(),
       },
     });
     return data.messages;

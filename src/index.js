@@ -16,11 +16,12 @@ const App = () => {
 
   return (
     <div id="App">
+      
       <h1>Low Ball</h1>
       <Header />
-
+      <Sellings loginCred={loginCred}/>
+      <Messages loginCred={loginCred}/>
       <Navbar setLoginCred={setLoginCred} />
-
       <Logout />
 
       <Posts />

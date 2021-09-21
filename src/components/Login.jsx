@@ -5,8 +5,8 @@ import { loginUser } from "../api";
 import {storeToken} from "../auth"
 
 const Login = ({ setIsLoading, setIsLoggedIn }) => {
-  const [userName, setUserName] = useState("thisisaname"); //remember to set default to ''
-  const [password, setPassword] = useState("123"); //remember to set default to ''
+  const [userName, setUserName] = useState(""); //remember to set default to ''
+  const [password, setPassword] = useState(""); //remember to set default to ''
 
   return (
     <div className="auth-component-main-container">

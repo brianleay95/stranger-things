@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = ({loginCred, setCurrentPage}) => {
     return (
-        <div>
+        <div className="navbar">
             <span onClick={(event) => {
                 event.preventDefault()
                 setCurrentPage("Posts")

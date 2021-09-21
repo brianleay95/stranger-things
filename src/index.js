@@ -8,23 +8,26 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Posts, Navbar, Sellings, Messages, Logout } from "./components";
+import { Posts, Navbar, Sellings, Messages, Login, Logout } from "./components";
 
 const App = () => {
   const [loginCred, setLoginCred] = useState(null);
+  const [currentPage, setCurrentPage] = useState('');
 
   return (
     <div id="App">
       
       <h1>Low Ball</h1>
       {/*<Header />*/}
-      <Sellings loginCred={loginCred}/>
-      <Messages loginCred={loginCred}/>
       <Navbar setLoginCred={setLoginCred}
-              loginCred={loginCred} />
-      <Logout logicCred={loginCred}/>
-
-      <Posts />
+              loginCred={loginCred} 
+              setCurrentPage={setCurrentPage}/>
+      {currentPage === "Login" ? <Login /> : null}
+      {currentPage === "Register" ? <Register /> : null}
+      {currentPage === "Sellings" ? <Sellings loginCred={loginCred}/> : null }
+      {currentPage === "Messages" ? <Messages loginCred={loginCred}/> : null }
+      {currentPage === "Logout" ? <Logout logicCred={loginCred}/> : null }
+      {currentPage === "Posts" ? <Posts /> : null }
     </div>
   );
 };

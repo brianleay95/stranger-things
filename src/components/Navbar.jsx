@@ -1,33 +1,34 @@
 import React from 'react'
 
-const Navbar = ({loginCred, setCurrentPage}) => {
+const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
     return (
         <div>
             <span onClick={(event) => {
                 event.preventDefault()
                 setCurrentPage("Posts")
-            }}> Post
+            }}> Posts
             </span>
-            <span onClick={(event) => {
+            {isLoggedIn ? <span onClick={(event) => {
                 event.preventDefault()
                 setCurrentPage("Messages")
             }}> Messages
-            </span>
-            <span onClick={(event) => {
+            </span> : null}
+            {isLoggedIn ? <span onClick={(event) => {
                 event.preventDefault()
                 setCurrentPage("Sellings")
             }}> Selling
-            </span>
-            { loginCred === null
+            </span> : null}
+            { isLoggedIn
                 ? <span onClick={(event) => {
                     event.preventDefault()
-                    setCurrentPage("Login")
-                }}> Login/Register
+                    setCurrentPage("Logout")
+                    setIsLoggedIn(false)
+                }}> Logout
                 </span>
                 : <span onClick={(event) => {
                     event.preventDefault()
-                    setCurrentPage("Logout")
-                }}> Logout
+                    setCurrentPage("Login")
+                }}> Login/Register
                 </span>}
         </div>
     );

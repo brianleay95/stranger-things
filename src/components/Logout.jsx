@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 
-const Logout = (loginCred) => {
+const Logout = (isLoggedIn) => {
     return (
         <div className="logout-confirmation">
-            { loginCred === null
-                ? <h1>You've logged out!</h1>
-                : null}
+            { isLoggedIn
+                ? <h1>Logout failed, try again</h1> : <h1>You've logged out!</h1>}
         </div>
   );
 };

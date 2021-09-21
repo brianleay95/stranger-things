@@ -4,10 +4,15 @@ import { NavLink } from "react-router-dom";
 import { loginUser } from "../api";
 import {storeToken} from "../auth"
 
-const Login = ({ setIsLoading, setIsLoggedIn }) => {
+const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage}) => {
+  if(isLoggedIn) 
+    return (<div className="auth-component-main-container">You're already logged in!  Log out before logging in as a different user.</div>)
+
   const [userName, setUserName] = useState(""); //remember to set default to ''
   const [password, setPassword] = useState(""); //remember to set default to ''
 
+
+  //need to add register button and link to register page
   return (
     <div className="auth-component-main-container">
       <form
@@ -20,7 +25,7 @@ const Login = ({ setIsLoading, setIsLoggedIn }) => {
             const results = await loginUser(userName, password)
             storeToken(results.data.token)
             setIsLoggedIn(true)
-
+            
             setUserName('')
             setPassword('')
 
@@ -56,7 +61,7 @@ const Login = ({ setIsLoading, setIsLoggedIn }) => {
             }}
           />
         </fieldset>
-        <button>Login</button>
+        <button>Login</button> 
       </form>
     </div>
   );

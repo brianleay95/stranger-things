@@ -11,22 +11,23 @@ import {
 import { Posts, Navbar, Sellings, Messages, Login, Logout } from "./components";
 
 const App = () => {
-  const [loginCred, setLoginCred] = useState(null);
   const [currentPage, setCurrentPage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div id="App">
       
       <h1>Low Ball</h1>
       {/*<Header />*/}
-      <Navbar setLoginCred={setLoginCred}
-              loginCred={loginCred} 
-              setCurrentPage={setCurrentPage}/>
-      {currentPage === "Login" ? <Login /> : null}
-      {currentPage === "Register" ? <Register /> : null}
-      {currentPage === "Sellings" ? <Sellings loginCred={loginCred}/> : null }
-      {currentPage === "Messages" ? <Messages loginCred={loginCred}/> : null }
-      {currentPage === "Logout" ? <Logout logicCred={loginCred}/> : null }
+      <Navbar isLoggedIn={isLoggedIn} 
+              setCurrentPage={setCurrentPage}
+              setIsLoggedIn={setIsLoggedIn}/>
+      {currentPage === "Login" ? <Login setIsLoggedIn={setIsLoggedIn}
+                                        setCurrentPage={setCurrentPage}/> : null}
+      {currentPage === "Register" ? <Register setIsLoggedIn={setIsLoggedIn}/> : null}
+      {currentPage === "Sellings" ? <Sellings isLoggedIn={isLoggedIn}/> : null }
+      {currentPage === "Messages" ? <Messages isLoggedIn={isLoggedIn}/> : null }
+      {currentPage === "Logout" ? <Logout isLoggedIn={isLoggedIn}/> : null }
       {currentPage === "Posts" ? <Posts /> : null }
     </div>
   );

@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import  {fetchUserPosts} from "../api"
 import axios from "axios";
 
-const Sellings = (loginCred) => {
+const Sellings = (isLoggedIn) => {
+  if(!isLoggedIn) 
+    return (<div className="sellings-main-container">Not available, please log in to view your posts!</div>)
+
   const [userPosts, setUserPosts] = useState([])
 
   useEffect(() => {
-    setUserPosts(fetchUserPosts(loginCred));
+    setUserPosts(fetchUserPosts());
   }, []);
 
+  
   return (
     <div className="sellings-main-container">
       <h1>My Posts/Selling</h1>

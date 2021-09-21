@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Logout = () => {
-    
     return (
         <div className="logout-confirmation">
             { loginCred === null

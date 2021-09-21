@@ -20,7 +20,7 @@ const Navbar = ({setLoginCred}) => {
             { loginCred === null
                 ? <span onClick={(event) => {
                     event.preventDefault()
-    
+                    
                 }}> Login/Register
                 </span>
                 : <span onClick={(event) => {

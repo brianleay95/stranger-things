@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE = "http://clever-neumann-583.herokuapp.com";
+const BASE = "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT";
 
 // this is an example for an api call with axios
 
@@ -53,5 +53,15 @@ export async function registerUser(username, password) {
     return data;
   } catch (error) {
     throw error;
+  }
+}
+
+export async function fetchAllPosts() {
+  try {
+    const response = await axios.get(`${BASE}/posts`);
+    const data = response.data
+    return data.data;
+  } catch (err) {
+    console.log(err);
   }
 }

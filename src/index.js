@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Posts from "./Posts";
 
 import {
   BrowserRouter as Router,
@@ -9,7 +8,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Header, Navbar, Logout } from "./components";
+import { Posts, Navbar, Sellings, Messages, Logout } from "./components";
 
 const App = () => {
   const [loginCred, setLoginCred] = useState(null);
@@ -18,11 +17,12 @@ const App = () => {
     <div id="App">
       
       <h1>Low Ball</h1>
-      <Header />
+      {/*<Header />*/}
       <Sellings loginCred={loginCred}/>
       <Messages loginCred={loginCred}/>
-      <Navbar setLoginCred={setLoginCred} />
-      <Logout />
+      <Navbar setLoginCred={setLoginCred}
+              loginCred={loginCred} />
+      <Logout logicCred={loginCred}/>
 
       <Posts />
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Logout = () => {
+const Logout = (loginCred) => {
     return (
         <div className="logout-confirmation">
             { loginCred === null

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import  {fetchUserPosts} from "./api"
+import  {fetchUserPosts} from "../api"
 import axios from "axios";
 
 const Sellings = (loginCred) => {

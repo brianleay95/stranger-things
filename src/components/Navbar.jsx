@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = ({setLoginCred}) => {
+const Navbar = ({setLoginCred, loginCred}) => {
     return (
         <div>
             <span onClick={(event) => {

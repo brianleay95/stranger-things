@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {fetchUserMessages} from "./api"
+import {fetchUserMessages} from "../api"
 
 const Messages = (loginCred) => {
   const [myMessages, setMyMessages] = useState([]);

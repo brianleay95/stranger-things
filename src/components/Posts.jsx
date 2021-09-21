@@ -19,7 +19,6 @@ const Posts = () => {
               <div key={post._id} className="post-card">
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                <p>{post.price}</p>
               </div>
             );
           })

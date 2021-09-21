@@ -23,6 +23,7 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
                     event.preventDefault()
                     setCurrentPage("Logout")
                     setIsLoggedIn(false)
+                    clearCurrentUser()
                 }}> Logout
                 </span>
                 : <span onClick={(event) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllPosts } from "./api";
+import { fetchAllPosts } from "../api";
 
 const Posts = () => {
   const [allPosts, setAllPosts] = useState([]);
@@ -19,6 +19,7 @@ const Posts = () => {
               <div key={post._id} className="post-card">
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
+                <p>{post.price}</p>
               </div>
             );
           })

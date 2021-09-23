@@ -16,10 +16,12 @@ const Posts = () => {
       {allPosts.length
         ? allPosts.map((post) => {
             return (
-              <div key={post._id} className="post-card">
+              <div className="all-cards">
+                <div key={post._id} className="post-card">
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <p>{post.price}</p>
+                </div>
               </div>
             );
           })

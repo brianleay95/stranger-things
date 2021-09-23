@@ -21,7 +21,7 @@
 }
 .post-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
+ }
 #App h1{
     font-family: montserrat;
     font-size: 40px;
@@ -29,13 +29,11 @@
     text-align: center;
     padding: 10px;
 }
-
 .navbar{
   font-family: montserrat;
   font-size: 25px;
   color: aliceblue;
   padding: 10px;
   box-shadow: 5px 5px 0px rgb(170, 170, 170);
-  background-color: #109467;
-  
+  background-color: #109467; 
 }

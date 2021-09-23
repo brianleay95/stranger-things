@@ -8,11 +8,12 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Posts, Navbar, Sellings, Messages, Login, Logout } from "./components";
+import { Posts, Navbar, Sellings, Messages, Login, Logout, Register, Loading } from "./components";
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div id="App">
@@ -23,12 +24,19 @@ const App = () => {
               setCurrentPage={setCurrentPage}
               setIsLoggedIn={setIsLoggedIn}/>
       {currentPage === "Login" ? <Login setIsLoggedIn={setIsLoggedIn}
-                                        setCurrentPage={setCurrentPage}/> : null}
-      {currentPage === "Register" ? <Register setIsLoggedIn={setIsLoggedIn}/> : null}
-      {currentPage === "Sellings" ? <Sellings isLoggedIn={isLoggedIn}/> : null }
-      {currentPage === "Messages" ? <Messages isLoggedIn={isLoggedIn}/> : null }
+                                        setCurrentPage={setCurrentPage}
+                                        isLoggedIn={isLoggedIn}
+                                        setIsLoading={setIsLoading}/> : null}
+      {currentPage === "Register" ? <Register isLoggedIn={isLoggedIn}
+                                              setIsLoading={setIsLoading}
+                                              setIsLoggedIn={setIsLoggedIn}/> : null}
+      {currentPage === "Sellings" ? <Sellings isLoggedIn={isLoggedIn}
+                                              setIsLoading={setIsLoading}/> : null }
+      {currentPage === "Messages" ? <Messages isLoggedIn={isLoggedIn}
+                                              setIsLoading={setIsLoading}/> : null }
       {currentPage === "Logout" ? <Logout isLoggedIn={isLoggedIn}/> : null }
-      {currentPage === "Posts" ? <Posts /> : null }
+      {isLoading ? <Loading/> : null}
+      {currentPage === "Posts" ? <Posts isLoading={isLoading}/> : null }
     </div>
   );
 };

@@ -90,6 +90,30 @@ export async function addPosts(
     throw error;
   }
 }
+export async function addMessages(
+  content
+) {
+  try {
+    const token = getToken();
+    const { data } = await axios.post(
+      `${BASE}/posts`,
+      {
+        message: {
+          content:content,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export async function fetchAllPosts() {
   try {

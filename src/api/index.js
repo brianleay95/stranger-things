@@ -11,7 +11,7 @@ export async function loginUser(username, password) {
       user: {
         username: username,
         password: password,
-      }
+      },
     });
     return data;
   } catch (error) {
@@ -23,8 +23,7 @@ export async function fetchUserPosts() {
   try {
     const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
-        "auth-token":
-          getToken(),
+        "auth-token": getToken(),
       },
     });
     return data.posts;
@@ -37,8 +36,7 @@ export async function fetchUserMessages(aToken) {
   try {
     const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
-        "auth-token":
-          getToken(),
+        "auth-token": getToken(),
       },
     });
     return data.messages;
@@ -50,11 +48,43 @@ export async function fetchUserMessages(aToken) {
 export async function registerUser(username, password) {
   try {
     const { data } = await axios.post(`${BASE}/users/register`, {
-      user:{
+      user: {
         username: username,
         password: password,
-      }
+      },
     });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function addPosts(
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+) {
+  try {
+    const token = getToken();
+    const { data } = await axios.post(
+      `${BASE}/posts`,
+      {
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: willDeliver,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    );
     return data;
   } catch (error) {
     throw error;
@@ -64,7 +94,7 @@ export async function registerUser(username, password) {
 export async function fetchAllPosts() {
   try {
     const response = await axios.get(`${BASE}/posts`);
-    const data = response.data
+    const data = response.data;
     return data.data;
   } catch (err) {
     console.log(err);

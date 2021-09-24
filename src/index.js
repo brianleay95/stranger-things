@@ -8,35 +8,59 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { Posts, Navbar, Sellings, Messages, Login, Logout, Register, Loading } from "./components";
+import {
+  Posts,
+  Navbar,
+  Sellings,
+  Messages,
+  Login,
+  Logout,
+  CreatePosts,
+  Register,
+  Loading,
+} from "./components";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('');
+  const [currentPage, setCurrentPage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div id="App">
-      
       <h1>Low Ball</h1>
       {/*<Header />*/}
-      <Navbar isLoggedIn={isLoggedIn} 
-              setCurrentPage={setCurrentPage}
-              setIsLoggedIn={setIsLoggedIn}/>
-      {currentPage === "Login" ? <Login setIsLoggedIn={setIsLoggedIn}
-                                        setCurrentPage={setCurrentPage}
-                                        isLoggedIn={isLoggedIn}
-                                        setIsLoading={setIsLoading}/> : null}
-      {currentPage === "Register" ? <Register isLoggedIn={isLoggedIn}
-                                              setIsLoading={setIsLoading}
-                                              setIsLoggedIn={setIsLoggedIn}/> : null}
-      {currentPage === "Sellings" ? <Sellings isLoggedIn={isLoggedIn}
-                                              setIsLoading={setIsLoading}/> : null }
-      {currentPage === "Messages" ? <Messages isLoggedIn={isLoggedIn}
-                                              setIsLoading={setIsLoading}/> : null }
-      {currentPage === "Logout" ? <Logout isLoggedIn={isLoggedIn}/> : null }
-      {isLoading ? <Loading/> : null}
-      {currentPage === "Posts" ? <Posts isLoading={isLoading}/> : null }
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setCurrentPage={setCurrentPage}
+        setIsLoggedIn={setIsLoggedIn}
+      />
+      {currentPage === "Login" ? (
+        <Login
+          setIsLoggedIn={setIsLoggedIn}
+          setCurrentPage={setCurrentPage}
+          isLoggedIn={isLoggedIn}
+          setIsLoading={setIsLoading}
+        />
+      ) : null}
+      {currentPage === "Register" ? (
+        <Register
+          isLoggedIn={isLoggedIn}
+          setIsLoading={setIsLoading}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      ) : null}
+      {currentPage === "Sellings" ? (
+        <Sellings isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+      ) : null}
+      {currentPage === "Create Posts" ? (
+        <CreatePosts isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+      ) : null}
+      {currentPage === "Messages" ? (
+        <Messages isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+      ) : null}
+      {currentPage === "Logout" ? <Logout isLoggedIn={isLoggedIn} /> : null}
+      {isLoading ? <Loading /> : null}
+      {currentPage === "Posts" ? <Posts isLoading={isLoading} /> : null}
     </div>
   );
 };

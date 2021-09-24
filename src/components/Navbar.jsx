@@ -24,6 +24,11 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
                 setCurrentPage("Create Posts")
             }}> Create Posts
             </span> : null}
+            {isLoggedIn ? <span onClick={(event) => {
+                event.preventDefault()
+                setCurrentPage("Messages")
+            }}> Messages
+            </span> : null}
             { isLoggedIn
                 ? <span onClick={(event) => {
                     event.preventDefault()

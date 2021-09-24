@@ -7,9 +7,11 @@ const BASE = "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT";
 
 export async function loginUser(username, password) {
   try {
-    const { data } = await axios.post(`${BASE}/user/login`, {
-      username: username,
-      password: password,
+    const { data } = await axios.post(`${BASE}/users/login`, {
+      user: {
+        username: username,
+        password: password,
+      }
     });
     return data;
   } catch (error) {
@@ -19,7 +21,7 @@ export async function loginUser(username, password) {
 
 export async function fetchUserPosts() {
   try {
-    const { data } = await axios.get(`${BASE}/user/me`, {
+    const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
         "auth-token":
           getToken(),
@@ -33,7 +35,7 @@ export async function fetchUserPosts() {
 
 export async function fetchUserMessages(aToken) {
   try {
-    const { data } = await axios.get(`${BASE}/user/me`, {
+    const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
         "auth-token":
           getToken(),
@@ -47,9 +49,11 @@ export async function fetchUserMessages(aToken) {
 
 export async function registerUser(username, password) {
   try {
-    const { data } = await axios.post(`${BASE}/user/register`, {
-      username: username,
-      password: password,
+    const { data } = await axios.post(`${BASE}/users/register`, {
+      user:{
+        username: username,
+        password: password,
+      }
     });
     return data;
   } catch (error) {

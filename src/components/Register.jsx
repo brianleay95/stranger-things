@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { registerUser } from "../api";
 import { storeToken } from "../auth";
 
-const Register = ({ setIsLoading, setIsLoggedIn }) => {
+const Register = ({ setIsLoading, isLoggedIn, setIsLoggedIn}) => {
   if(isLoggedIn) 
     return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
 
@@ -21,9 +21,12 @@ const Register = ({ setIsLoading, setIsLoggedIn }) => {
 
           try {
             const results = await registerUser(userName, password);
-            storeToken(results.data.token);
-            setIsLoggedIn(true);
-
+            if(results.success === true) {
+              storeToken(results.data.token);
+              setIsLoggedIn(true);
+            }
+            else  
+              console.log('register failed: ', results.error.message)
             setUserName("");
             setPassword("");
           } catch (err) {
@@ -50,7 +53,7 @@ const Register = ({ setIsLoading, setIsLoggedIn }) => {
           <label htmlFor="password">User Password</label>
           <input
             id="password"
-            type="text"
+            type="password"
             placeholder="enter password"
             value={password}
             onChange={(event) => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import {clearCurrentUser} from "../auth"
 
 const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
     return (

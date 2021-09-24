@@ -19,6 +19,11 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
                 setCurrentPage("Sellings")
             }}> Selling
             </span> : null}
+            {isLoggedIn ? <span onClick={(event) => {
+                event.preventDefault()
+                setCurrentPage("Create Posts")
+            }}> Create Posts
+            </span> : null}
             { isLoggedIn
                 ? <span onClick={(event) => {
                     event.preventDefault()

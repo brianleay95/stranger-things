@@ -23,7 +23,8 @@ const App = () => {
               setCurrentPage={setCurrentPage}
               setIsLoggedIn={setIsLoggedIn}/>
       {currentPage === "Login" ? <Login setIsLoggedIn={setIsLoggedIn}
-                                        setCurrentPage={setCurrentPage}/> : null}
+                                        setCurrentPage={setCurrentPage}
+                                        isLoggedIn={isLoggedIn}/> : null}
       {currentPage === "Register" ? <Register setIsLoggedIn={setIsLoggedIn}/> : null}
       {currentPage === "Sellings" ? <Sellings isLoggedIn={isLoggedIn}/> : null }
       {currentPage === "Messages" ? <Messages isLoggedIn={isLoggedIn}/> : null }

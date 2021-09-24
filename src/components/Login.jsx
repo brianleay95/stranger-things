@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { loginUser } from "../api";
 import {storeToken} from "../auth"
 
-const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage}) => {
+const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
   if(isLoggedIn) 
     return (<div className="auth-component-main-container">You're already logged in!  Log out before logging in as a different user.</div>)
 

@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { addPosts } from "../api";
+import { addMessages, addPosts } from "../api";
 import { getToken } from "../auth";
 
 const CreateMessages = ({isLoggedIn}) => {
     // if(isLoggedIn) 
     // return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [location, setLocation ] = useState("");
-    const [willDeliver, setWillDeliver ] = useState(false);
-
+    const [content, setContent] = useState("");
+    
     return (
         <div className="">
             <form 
-                id="createPosts"
+                id="createMessages"
                 onSubmit={async (event)=>{
                     event.preventDefault();
                     try {
-                        const results = await addPosts(title, description, price, location, willDeliver)
-                        setTitle("")
-                        setDescription("")
-                        setPrice("")
-                        setLocation("")
-                        setWillDeliver(false)
+                        const results = await addMessages(content)
+                        setContent("")
                     }catch (err) {
                         console.log(err);}
                 }}
@@ -32,53 +24,11 @@ const CreateMessages = ({isLoggedIn}) => {
                 <fieldset className="">
                     <label htmlFor="Title">Title</label>
                     <input type="text"
-                            id="Title"
-                            placeholder="Title"
-                            value={title} 
+                            id="Content"
+                            placeholder="Message"
+                            value={content} 
                             onChange={(event) => {
-                                setTitle(event.target.value);
-                            }}/>
-
-                </fieldset>
-                <fieldset className="">
-                    <label htmlFor="Description">Description</label>
-                    <input type="text"
-                            id="Description"
-                            placeholder="Description"
-                            value={description} 
-                            onChange={(event) => {
-                                setDescription(event.target.value);
-                            }}/>
-
-                </fieldset>
-                <fieldset className="">
-                    <label htmlFor="Price">Price</label>
-                    <input type="text"
-                            id="Price"
-                            placeholder="Price"
-                            value={price} 
-                            onChange={(event) => {
-                                setPrice(event.target.value);
-                            }}/>
-
-                </fieldset>
-                <fieldset className="">
-                    <label htmlFor="Location">Location</label>
-                    <input type="text"
-                            id="Location"
-                            placeholder="Location"
-                            value={location} 
-                            onChange={(event) => {
-                                setLocation(event.target.value);
-                            }}/>
-                </fieldset>
-                <fieldset className="">
-                    <label htmlFor="Will Deliver">Will Deliver</label>
-                    <input type="checkbox"
-                            id="willDeliver"
-                            value={location} 
-                            onChange={(event) => {
-                                setWillDeliver(!willDeliver);
+                                setContent(event.target.value);
                             }}/>
                 </fieldset>
                 <input type="submit" value="Submit" />

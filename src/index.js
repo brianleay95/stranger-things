@@ -18,7 +18,6 @@ import {
   CreatePosts,
   Register,
   Loading,
-  CreateMessages,
 } from "./components";
 
 const App = () => {
@@ -51,35 +50,17 @@ const App = () => {
         />
       ) : null}
       {currentPage === "Sellings" ? (
-        <Sellings 
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
+        <Sellings isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
       ) : null}
       {currentPage === "Create Posts" ? (
-        <CreatePosts 
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
-      ) : null}
-      {currentPage === "Create Messages" ? (
-        <CreateMessages 
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
+        <CreatePosts isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
       ) : null}
       {currentPage === "Messages" ? (
-        <Messages  
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
+        <Messages isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
       ) : null}
-      {currentPage === "Logout" ? 
-        <Logout isLoggedIn={isLoggedIn} /> 
-        : null}
-      {isLoading ? 
-        <Loading /> 
-        : null}
-      {currentPage === "Posts" ? 
-        <Posts 
-          setCurrentPage={setCurrentPage}
-          isLoading={isLoading} /> : null}
+      {currentPage === "Logout" ? <Logout isLoggedIn={isLoggedIn} /> : null}
+      {isLoading ? <Loading /> : null}
+      {currentPage === "Posts" ? <Posts isLoading={isLoading} /> : null}
     </div>
   );
 };

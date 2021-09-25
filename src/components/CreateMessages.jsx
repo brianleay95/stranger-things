@@ -3,8 +3,8 @@ import { addMessages, addPosts } from "../api";
 import { getToken } from "../auth";
 
 const CreateMessages = ({isLoggedIn}) => {
-     if(!isLoggedIn) 
-        return (<div className="sellings-main-container">You're not logged in!  Please log in to message about this post.</div>)
+    // if(isLoggedIn) 
+    // return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
 
     const [content, setContent] = useState("");
     
@@ -15,14 +15,14 @@ const CreateMessages = ({isLoggedIn}) => {
                 onSubmit={async (event)=>{
                     event.preventDefault();
                     try {
-                        const results = await addMessages(content, )
+                        const results = await addMessages(content)
                         setContent("")
                     }catch (err) {
                         console.log(err);}
                 }}
                 >
                 <fieldset className="">
-                    <label htmlFor="Title">Message</label>
+                    <label htmlFor="Title">Title</label>
                     <input type="text"
                             id="Content"
                             placeholder="Message"
@@ -31,11 +31,11 @@ const CreateMessages = ({isLoggedIn}) => {
                                 setContent(event.target.value);
                             }}/>
                 </fieldset>
-                <input type="submit" value="Send Message" />
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )
 
 }
 
-export default CreateMessages;
+export default CreatePosts;

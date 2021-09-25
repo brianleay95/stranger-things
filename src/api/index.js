@@ -91,15 +91,15 @@ export async function addPosts(
   }
 }
 export async function addMessages(
-  content, postID
+  content
 ) {
   try {
     const token = getToken();
     const { data } = await axios.post(
-      `${BASE}/posts/${postID}/messages`,
+      `${BASE}/posts`,
       {
         message: {
-          content: content,
+          content:content,
         },
       },
       {

@@ -12,8 +12,9 @@ const Messages = ({isLoggedIn, setIsLoading}) => {
 
   const [myMessages, setMyMessages] = useState([]);
 
-  useEffect(() => {
-    setMyMessages(fetchUserMessages());
+  useEffect(async () => {
+    const data = await fetchUserMessages();
+    setMyMessages(data.messages);
   }, []);
 
   return (
@@ -23,12 +24,13 @@ const Messages = ({isLoggedIn, setIsLoading}) => {
         ? myMessages.map((message) => {
             return (
               <div key={message._id} className="messages-card">
-                <h3>{myMessages.fromUser}</h3>
-                <p>{myMessages.post.title}</p>
+                <h3>From: {message.fromUser.username}</h3>
+                <p>Post: {message.post.title}</p>
+                <p>Message: {message.content}</p>
               </div>
             );
           })
-        : null}
+        : <div>No messages</div>}
     </div>
   );
 };

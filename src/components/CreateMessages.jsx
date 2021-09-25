@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { addMessages, addPosts } from "../api";
 import { getToken } from "../auth";
 
-const CreateMessages = ({isLoggedIn}) => {
-    // if(isLoggedIn) 
-    // return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
+
+const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
+     if(!isLoggedIn) 
+        return (<div className="sellings-main-container">You're not logged in!  Please log in to message about this post.</div>)
+
 
     const [content, setContent] = useState("");
     
@@ -15,7 +17,7 @@ const CreateMessages = ({isLoggedIn}) => {
                 onSubmit={async (event)=>{
                     event.preventDefault();
                     try {
-                        const results = await addMessages(content)
+                        const results = await addMessages(content, postID)
                         setContent("")
                     }catch (err) {
                         console.log(err);}

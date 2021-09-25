@@ -6,22 +6,22 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
         <div className="navbar">
             <span onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage("Posts")
+                setCurrentPage({name: "Posts", properties: null})
             }}> Posts
             </span>
             {isLoggedIn ? <span onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage("Messages")
+                setCurrentPage({name:"Messages", properties: null})
             }}> Messages
             </span> : null}
             {isLoggedIn ? <span onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage("Sellings")
-            }}> Selling
+                setCurrentPage({name:"Sellings", properties: null})
+            }}> Sellings
             </span> : null}
             {isLoggedIn ? <span onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage("Create Posts")
+                setCurrentPage({name:"Create Posts", properties: null})
             }}> Create Posts
             </span> : null}
             {isLoggedIn ? <span onClick={(event) => {
@@ -32,14 +32,14 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
             { isLoggedIn
                 ? <span onClick={(event) => {
                     event.preventDefault()
-                    setCurrentPage("Logout")
+                    setCurrentPage({name:"Logout", properties: null})
                     setIsLoggedIn(false)
                     clearCurrentUser()
                 }}> Logout
                 </span>
                 : <span onClick={(event) => {
                     event.preventDefault()
-                    setCurrentPage("Login")
+                    setCurrentPage({name:"Login", properties: null})
                 }}> Login/Register
                 </span>}
         </div>

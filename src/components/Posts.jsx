@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { fetchAllPosts } from "../api";
 
-const Posts = () => {
+const Posts = ({ setCurrentPage, setIsLoading }) => {
   const [allPosts, setAllPosts] = useState([]);
 
   useEffect(async () => {
     const data = await fetchAllPosts();
     setAllPosts(data.posts);
-    console.log(data)
+    console.log(data);
   }, []);
 
   return (
@@ -18,9 +18,21 @@ const Posts = () => {
             return (
               <div className="all-cards">
                 <div key={post._id} className="post-card">
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <p>{post.price}</p>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                  <p>{post.price}</p>
+                  {!post.isAuthor ? <span>
+                    <a
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setCurrentPage("Create Messages");
+                      }}
+                    >
+                      {" "}
+                      ^^Message the owner about this item^^{" "}
+                    </a>
+                  </span> 
+                  : null }
                 </div>
               </div>
             );

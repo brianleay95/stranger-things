@@ -6,4 +6,5 @@ export { default as Navbar } from './Navbar';
 export { default as Messages } from './Messages';
 export { default as Sellings } from './Sellings';
 export { default as Loading } from './Loading';
-export { default as CreatePosts} from './CreatePosts';
+export { default as CreatePosts } from './CreatePosts';
+export { default as CreateMessages } from './CreateMessages'

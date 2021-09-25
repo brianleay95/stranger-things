@@ -22,7 +22,7 @@ import {
 } from "./components";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("");
+  const [currentPage, setCurrentPage] = useState({name: "", properties: null});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +35,7 @@ const App = () => {
         setCurrentPage={setCurrentPage}
         setIsLoggedIn={setIsLoggedIn}
       />
-      {currentPage === "Login" ? (
+      {currentPage.name === "Login" ? (
         <Login
           setIsLoggedIn={setIsLoggedIn}
           setCurrentPage={setCurrentPage}
@@ -43,40 +43,40 @@ const App = () => {
           setIsLoading={setIsLoading}
         />
       ) : null}
-      {currentPage === "Register" ? (
+      {currentPage.name === "Register" ? (
         <Register
           isLoggedIn={isLoggedIn}
           setIsLoading={setIsLoading}
           setIsLoggedIn={setIsLoggedIn}
         />
       ) : null}
-      {currentPage === "Sellings" ? (
+      {currentPage.name === "Sellings" ? (
         <Sellings 
           isLoggedIn={isLoggedIn} 
           setIsLoading={setIsLoading} />
       ) : null}
-      {currentPage === "Create Posts" ? (
+      {currentPage.name === "Create Posts" ? (
         <CreatePosts 
           isLoggedIn={isLoggedIn} 
           setIsLoading={setIsLoading} />
       ) : null}
-      {currentPage === "Create Messages" ? (
-        <CreateMessages 
+      {currentPage.name === "Create Messages" ? (
+        <CreateMessages postID = {currentPage.properties}
           isLoggedIn={isLoggedIn} 
           setIsLoading={setIsLoading} />
       ) : null}
-      {currentPage === "Messages" ? (
+      {currentPage.name === "Messages" ? (
         <Messages  
           isLoggedIn={isLoggedIn} 
           setIsLoading={setIsLoading} />
       ) : null}
-      {currentPage === "Logout" ? 
+      {currentPage.name === "Logout" ? 
         <Logout isLoggedIn={isLoggedIn} /> 
         : null}
       {isLoading ? 
         <Loading /> 
         : null}
-      {currentPage === "Posts" ? 
+      {currentPage.name === "Posts" ? 
         <Posts 
           setCurrentPage={setCurrentPage}
           isLoading={isLoading} /> : null}

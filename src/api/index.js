@@ -21,9 +21,11 @@ export async function loginUser(username, password) {
 
 export async function fetchUserPosts() {
   try {
+    const token = getToken()
     const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
-        "auth-token": getToken(),
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     });
     return data.posts;
@@ -32,14 +34,18 @@ export async function fetchUserPosts() {
   }
 }
 
-export async function fetchUserMessages(aToken) {
+export async function fetchUserMessages() {
   try {
+    const token = getToken()
+    console.log('token: ', token)
     const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
-        "auth-token": getToken(),
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
       },
     });
-    return data.messages;
+    console.log('messages: ', data.data.messages)
+    return data.data;
   } catch (error) {
     throw error;
   }
@@ -53,11 +59,13 @@ export async function registerUser(username, password) {
         password: password,
       },
     });
-    return data;
+    return data.data;
   } catch (error) {
     throw error;
   }
 }
+
+
 export async function addPosts(
   title,
   description,
@@ -85,7 +93,7 @@ export async function addPosts(
         },
       }
     );
-    return data;
+    return data.data;
   } catch (error) {
     throw error;
   }
@@ -127,7 +135,7 @@ export async function addMessages(
         },
       }
     );
-    return data;
+    return data.data;
   } catch (error) {
     throw error;
   }

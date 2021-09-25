@@ -23,19 +23,7 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
                   <p>{post.price}</p>
-                  {!post.isAuthor ? (
-                    <span>
-                      <a
-                        onClick={(event) => {
-                          event.preventDefault();
-                          setCurrentPage("Create Messages");
-                        }}
-                      >
-                        {" "}
-                        ^^Message the owner about this item^^{" "}
-                      </a>
-                    </span>
-                  ) : null}
+  
                   {post.isAuthor ? (<button
                   
                     id="deletePost"
@@ -51,6 +39,19 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                   >
                     Delete Post
                   </button>): null}
+                  {!post.isAuthor ? <span>
+                    <a
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setCurrentPage({name: "Create Messages", properties: post._id});
+                      }}
+                    >
+                      {" "}
+                      ^^Message the owner about this item^^{" "}
+                    </a>
+                  </span> 
+                  : null }
+
                 </div>
               </div>
             );

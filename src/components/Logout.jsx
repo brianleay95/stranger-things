@@ -2,8 +2,6 @@ import {storeToken, getToken} from "../auth"
 
 
 const Logout = (isLoggedIn) => {
-    console.log('logged in: ', isLoggedIn)
-    console.log('token: ', getToken())
     return (
         <div className="logout-confirmation">
             { isLoggedIn

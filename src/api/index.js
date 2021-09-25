@@ -98,6 +98,24 @@ export async function addPosts(
     throw error;
   }
 }
+export async function deletePostNow(
+  postID
+) {
+  try {
+    const token = getToken();
+    const { data } = await axios.delete(
+      `${BASE}/posts/${postID}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}
 export async function addMessages(
   content
 ) {

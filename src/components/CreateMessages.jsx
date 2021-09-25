@@ -6,6 +6,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
      if(!isLoggedIn) 
         return (<div className="sellings-main-container">You're not logged in!  Please log in to message about this post.</div>)
 
+
     const [content, setContent] = useState("");
     
     return (
@@ -22,7 +23,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 }}
                 >
                 <fieldset className="">
-                    <label htmlFor="Title">Message</label>
+                    <label htmlFor="Title">Title</label>
                     <input type="text"
                             id="Content"
                             placeholder="Message"
@@ -31,11 +32,11 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                                 setContent(event.target.value);
                             }}/>
                 </fieldset>
-                <input type="submit" value="Send Message" />
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )
 
 }
 
-export default CreateMessages;
+export default CreatePosts;

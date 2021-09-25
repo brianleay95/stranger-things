@@ -18,7 +18,6 @@ import {
   CreatePosts,
   Register,
   Loading,
-  CreateMessages,
 } from "./components";
 
 const App = () => {

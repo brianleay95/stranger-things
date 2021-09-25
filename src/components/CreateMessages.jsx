@@ -39,4 +39,4 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
 
 }
 
-export default CreatePosts;
+export default CreateMessages;

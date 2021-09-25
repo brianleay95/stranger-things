@@ -25,7 +25,7 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                     <a
                       onClick={(event) => {
                         event.preventDefault();
-                        setCurrentPage("Create Messages");
+                        setCurrentPage({name: "Create Messages", properties: post._id});
                       }}
                     >
                       {" "}

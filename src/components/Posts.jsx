@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllPosts } from "../api";
+import { fetchAllPosts, deletePostNow } from "../api";
+
 
 const Posts = ({ setCurrentPage, setIsLoading }) => {
   const [allPosts, setAllPosts] = useState([]);
+  const [isActive, setIsActive] = useState([false]);
 
   useEffect(async () => {
     const data = await fetchAllPosts();
@@ -21,6 +23,22 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
                   <p>{post.price}</p>
+  
+                  {post.isAuthor ? (<button
+                  
+                    id="deletePost"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      try {
+                        const results = await deletePostNow(post._id);
+                        setIsActive(false);
+                      } catch (err) {
+                        console.log(err);
+                      }
+                    }}
+                  >
+                    Delete Post
+                  </button>): null}
                   {!post.isAuthor ? <span>
                     <a
                       onClick={(event) => {
@@ -33,6 +51,7 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                     </a>
                   </span> 
                   : null }
+
                 </div>
               </div>
             );

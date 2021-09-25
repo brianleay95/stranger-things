@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { addMessages, addPosts } from "../api";
 import { getToken } from "../auth";
 
-const CreateMessages = ({isLoggedIn}) => {
+const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
      if(!isLoggedIn) 
         return (<div className="sellings-main-container">You're not logged in!  Please log in to message about this post.</div>)
 
@@ -15,7 +15,7 @@ const CreateMessages = ({isLoggedIn}) => {
                 onSubmit={async (event)=>{
                     event.preventDefault();
                     try {
-                        const results = await addMessages(content, )
+                        const results = await addMessages(content, postID)
                         setContent("")
                     }catch (err) {
                         console.log(err);}

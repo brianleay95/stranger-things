@@ -28,7 +28,8 @@ export async function fetchUserPosts() {
         "Authorization": `Bearer ${token}`,
       },
     });
-    return data.posts;
+    console.log('usersellings: ', data.data.posts)
+    return data.data;
   } catch (error) {
     throw error;
   }
@@ -98,6 +99,7 @@ export async function addPosts(
     throw error;
   }
 }
+
 export async function deletePostNow(
   postID
 ) {
@@ -116,6 +118,7 @@ export async function deletePostNow(
     throw error;
   }
 }
+
 export async function addMessages(
   content
 ) {
@@ -148,5 +151,56 @@ export async function fetchAllPosts() {
     return data.data;
   } catch (err) {
     console.log(err);
+  }
+}
+
+export async function fetchAllPostsByUser() {
+  try {
+    const token = getToken();
+    const response = await axios.get(`${BASE}/posts`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const data = response.data;
+    console.log('fetchuser: ', data.data)
+    return data.data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function editPost(
+  postID, 
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+  ) {
+  try {
+    const token = getToken();
+    const { data } = await axios.patch(
+      `${BASE}/posts/${postID}`,
+      {
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          location: location,
+          willDeliver: willDeliver,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
   }
 }

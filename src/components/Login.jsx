@@ -38,7 +38,6 @@ const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
             console.log(err);
           } finally {
             setIsLoading(false);
-            console.log("token: ", getToken())
           }
         }}
       >

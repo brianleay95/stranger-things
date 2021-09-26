@@ -16,6 +16,8 @@ import {
   Login,
   Logout,
   CreatePosts,
+  CreateMessages,
+  EditPosts,
   Register,
   Loading,
 } from "./components";
@@ -36,10 +38,10 @@ const App = () => {
       />
       {currentPage.name === "Login" ? (
         <Login
+          setIsLoading={setIsLoading}
           setIsLoggedIn={setIsLoggedIn}
           setCurrentPage={setCurrentPage}
           isLoggedIn={isLoggedIn}
-          setIsLoading={setIsLoading}
         />
       ) : null}
       {currentPage.name === "Register" ? (
@@ -52,7 +54,8 @@ const App = () => {
       {currentPage.name === "Sellings" ? (
         <Sellings 
           isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
+          setIsLoading={setIsLoading}
+          setCurrentPage={setCurrentPage} />
       ) : null}
       {currentPage.name === "Create Posts" ? (
         <CreatePosts 
@@ -60,7 +63,8 @@ const App = () => {
           setIsLoading={setIsLoading} />
       ) : null}
       {currentPage.name === "Create Messages" ? (
-        <CreateMessages postID = {currentPage.properties}
+        <CreateMessages 
+          postID = {currentPage.properties}
           isLoggedIn={isLoggedIn} 
           setIsLoading={setIsLoading} />
       ) : null}
@@ -77,8 +81,17 @@ const App = () => {
         : null}
       {currentPage.name === "Posts" ? 
         <Posts 
+          isLoggedIn={isLoggedIn}
           setCurrentPage={setCurrentPage}
-          isLoading={isLoading} /> : null}
+          setIsLoading={setIsLoading} /> 
+        : null}
+      {currentPage.name === "Edit Posts" ? 
+        <EditPosts 
+          post={currentPage.properties}
+          isLoggedIn={isLoggedIn}
+          setCurrentPage={setCurrentPage}
+          isLoading={isLoading} /> 
+        : null}
     </div>
   );
 };

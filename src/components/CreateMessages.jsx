@@ -8,7 +8,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
 
 
     const [content, setContent] = useState("");
-    
+    console.log('isLoggedin: CM: ', isLoggedIn)
     return (
         <div className="">
             <form 
@@ -23,7 +23,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 }}
                 >
                 <fieldset className="">
-                    <label htmlFor="Title">Title</label>
+                    <label htmlFor="Title">Message</label>
                     <input type="text"
                             id="Content"
                             placeholder="Message"

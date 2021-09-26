@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllPosts, deletePostNow } from "../api";
+import { fetchAllPosts, deletePostNow, fetchAllPostsByUser } from "../api";
 
 
-const Posts = ({ setCurrentPage, setIsLoading }) => {
+const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
   const [allPosts, setAllPosts] = useState([]);
   const [isActive, setIsActive] = useState([false]);
 
   useEffect(async () => {
-    const data = await fetchAllPosts();
+    let data;
+    if(isLoggedIn) {
+      data = await fetchAllPostsByUser();
+    }
+    else {
+      data = await fetchAllPosts();
+    }
     setAllPosts(data.posts);
     console.log(data);
   }, []);
@@ -25,7 +31,6 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                   <p>{post.price}</p>
   
                   {post.isAuthor ? (<button
-                  
                     id="deletePost"
                     onClick={async (event) => {
                       event.preventDefault();
@@ -39,7 +44,16 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                   >
                     Delete Post
                   </button>): null}
-                  {!post.isAuthor ? <span>
+                  {post.isAuthor ? (<button
+                    id="editPost"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      setCurrentPage({name: "Edit Posts", properties: post})
+                    }}
+                  >
+                    Edit Post
+                  </button>): null}
+                  {( !isLoggedIn || !post.isAuthor) ? <span>
                     <a
                       onClick={(event) => {
                         event.preventDefault();
@@ -50,7 +64,7 @@ const Posts = ({ setCurrentPage, setIsLoading }) => {
                       ^^Message the owner about this item^^{" "}
                     </a>
                   </span> 
-                  : null }
+                  : <div> This is your post </div> }
 
                 </div>
               </div>

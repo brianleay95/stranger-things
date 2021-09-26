@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { addPosts } from "../api";
-import { getToken } from "../auth";
 
 const CreatePosts = ({isLoggedIn}) => {
-    // if(isLoggedIn) 
-    // return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
+    if(!isLoggedIn) 
+        return (<div className="create-posts-main-container">You're not logged in! Please log in to create a post.</div>)
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");

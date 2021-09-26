@@ -20,7 +20,7 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
 
   return (
     <div className="posts-main-container">
-      <h1>All Posts</h1>
+      <h2>All Posts</h2>
       {allPosts.length
         ? allPosts.map((post) => {
             return (

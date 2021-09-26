@@ -20,7 +20,7 @@ const Messages = ({isLoggedIn, setIsLoading}) => {
 
   return (
     <div key={myMessages._id} className="messages-main-container">
-      <h1>My Messages</h1>
+      <h2>My Messages</h2>
       {myMessages.length
         ? myMessages.map((message) => {
             return (

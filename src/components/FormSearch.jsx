@@ -9,13 +9,20 @@ const FormSearch = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
 
   useEffect(async () => {
     let data;
-    if(isLoggedIn) {
-      data = await fetchAllPostsByUser();
+    setIsLoading(true);
+    try {
+      if(isLoggedIn) {
+        data = await fetchAllPostsByUser();
+      }
+      else {
+        data = await fetchAllPosts();
+      }
+      setPosts(data.posts);
+    }catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
-    else {
-      data = await fetchAllPosts();
-    }
-    setPosts(data.posts);
   }, []);
 
   function postMatches(post, text) {

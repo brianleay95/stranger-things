@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { addPosts } from "../api";
 
-const CreatePosts = ({isLoggedIn}) => {
+const CreatePosts = ({isLoggedIn, setIsLoading}) => {
     if(!isLoggedIn) 
         return (<div className="create-posts-main-container">You're not logged in! Please log in to create a post.</div>)
 
@@ -18,6 +18,7 @@ const CreatePosts = ({isLoggedIn}) => {
                 id="createPosts"
                 onSubmit={async (event)=>{
                     event.preventDefault();
+                    setIsLoading(true);
                     try {
                         const results = await addPosts(title, description, price, location, willDeliver)
                         setTitle("")
@@ -27,7 +28,10 @@ const CreatePosts = ({isLoggedIn}) => {
                         setWillDeliver(false)
                         setCreated(true)
                     }catch (err) {
-                        console.log(err);}
+                        console.log(err);
+                    } finally {
+                        setIsLoading(false);
+                    }
                 }}
                 >
                 <fieldset className="">

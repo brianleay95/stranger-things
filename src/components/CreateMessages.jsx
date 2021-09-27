@@ -16,12 +16,16 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 id="createMessages"
                 onSubmit={async (event)=>{
                     event.preventDefault();
+                    setIsLoading(true);
                     try {
                         const results = await addMessages(content, postID)
                         setContent("")
                         setSent(true)
                     }catch (err) {
-                        console.log(err);}
+                        console.log(err);
+                    } finally {
+                        setIsLoading(false);
+                    }
                 }}
                 >
                 <fieldset className="">

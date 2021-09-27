@@ -89,8 +89,7 @@ const App = () => {
         <EditPosts 
           post={currentPage.properties}
           isLoggedIn={isLoggedIn}
-          setCurrentPage={setCurrentPage}
-          isLoading={isLoading} /> 
+          setIsLoading={setIsLoading} /> 
         : null}
       {currentPage.name === "Form Search" ? 
         <FormSearch 

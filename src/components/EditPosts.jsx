@@ -20,7 +20,6 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
         setLocation(post.location)
         setWillDeliver(post.willDeliver)
       }, []);
-    console.log('id: ', post._id)
 
 
     return edited ? <div>Post Updated!</div> : 

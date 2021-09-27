@@ -1,5 +1,4 @@
 export { default as Logout } from './Logout';
-export { default as Posts } from './Posts';
 export { default as Register } from './Register';
 export { default as Login } from './Login';
 export { default as Navbar } from './Navbar';
@@ -9,3 +8,4 @@ export { default as Loading } from './Loading';
 export { default as CreatePosts } from './CreatePosts';
 export { default as CreateMessages } from './CreateMessages';
 export { default as EditPosts } from './EditPosts';
+export { default as FormSearch } from './FormSearch';

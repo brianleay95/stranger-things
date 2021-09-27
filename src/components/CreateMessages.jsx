@@ -9,7 +9,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
 
     const [ content, setContent ] = useState("");
     const [ sent, setSent ] = useState(false)
-    console.log('isLoggedin: CM: ', isLoggedIn)
+    
     return sent ? <div>Message Sent!</div> :
         <div className="">
             <form 
@@ -37,7 +37,6 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 <input type="submit" value="Submit" />
             </form>
         </div>
-  );
 };
 
 export default CreateMessages;

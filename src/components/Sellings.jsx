@@ -11,8 +11,6 @@ const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
     const data = await fetchUserPosts();
     setUserPosts(data.posts);
   }, []);
-
-  console.log('userPosts: ',userPosts)
   
   return (
     <div key={userPosts._id} className="sellings-main-container">

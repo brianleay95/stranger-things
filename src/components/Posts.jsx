@@ -14,7 +14,6 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
       data = await fetchAllPosts();
     }
     setAllPosts(data.posts);
-    console.log(data);
   }, []);
 
   return (

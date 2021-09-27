@@ -70,7 +70,7 @@ const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
       </form>
       <a onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage("Register")}}> Don't have an account? Click here. </a>
+                setCurrentPage({name: "Register", properties: null})}}> Don't have an account? Click here. </a>
     </div>
   );
 };

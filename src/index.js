@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 
 import {
-  Posts,
   Navbar,
   Sellings,
   Messages,
@@ -20,6 +19,7 @@ import {
   EditPosts,
   Register,
   Loading,
+  FormSearch
 } from "./components";
 
 const App = () => {
@@ -91,6 +91,12 @@ const App = () => {
           isLoggedIn={isLoggedIn}
           setCurrentPage={setCurrentPage}
           isLoading={isLoading} /> 
+        : null}
+      {currentPage.name === "Form Search" ? 
+        <FormSearch 
+          isLoggedIn={isLoggedIn}
+          setCurrentPage={setCurrentPage}
+          setIsLoading={setIsLoading} /> 
         : null}
     </div>
   );

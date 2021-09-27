@@ -15,7 +15,6 @@ const Messages = ({isLoggedIn, setIsLoading}) => {
   useEffect(async () => {
     const data = await fetchUserMessages();
     setMyMessages(data.messages);
-    console.log('fromMessages.jsx USERID: ', data._id)
   }, []);
 
   return (

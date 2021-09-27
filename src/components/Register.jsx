@@ -6,13 +6,13 @@ import { storeToken } from "../auth";
 
 const Register = ({ setIsLoading, isLoggedIn, setIsLoggedIn}) => {
   if(isLoggedIn) 
-    return (<div className="sellings-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
+    return (<div className="register-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className="auth-component-main-container">
+    <div className="register-main-container">
       <form
         id="register"
         onSubmit={async (event) => {

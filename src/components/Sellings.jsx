@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import  {fetchUserPosts} from "../api"
-import axios from "axios";
+import  {fetchUserPosts, deletePostNow} from "../api"
 
 const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
   if(!isLoggedIn) 
@@ -20,22 +19,37 @@ const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
       <h1>My Posts/Sellings</h1>
       {userPosts.length
         ? userPosts.map((post) => {
-            return (
+            return post.active ?
               <div key={post._id} className="sellings-card">
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <p>{post.price}</p>
-                {post.isAuthor ? <a
-                    onClick={(event) => {
-                        event.preventDefault();
-                        setCurrentPage({name: "Edit Post", properties: post});
-                      }}
-                    >
-                      {" "}
-                      Edit this post{" "}
-                    </a> : null }
+                <button
+                    id="deletePost"
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      try {
+                        const results = await deletePostNow(post._id);
+                        const data = await fetchUserPosts();
+                        post.delete()
+                      } catch (err) {
+                        console.log(err);
+                      }
+                    }}
+                  >
+                    Delete Post
+                </button>
+                <button id='editPost'
+                  onClick={(event) => {
+                      event.preventDefault();
+                      setCurrentPage({name: "Edit Posts", properties: post});
+                    }}
+                  >
+                    {" "}
+                    Edit post{" "}
+                </button>
               </div>
-            );
+            : null;
           })
         : null}
     </div>

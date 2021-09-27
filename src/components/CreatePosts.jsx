@@ -10,8 +10,9 @@ const CreatePosts = ({isLoggedIn}) => {
     const [price, setPrice] = useState("");
     const [location, setLocation ] = useState("");
     const [willDeliver, setWillDeliver ] = useState(false);
+    const [created, setCreated ] = useState(false);
 
-    return (
+    return created ? <div>Post Created!</div> :
         <div className="">
             <form 
                 id="createPosts"
@@ -24,6 +25,7 @@ const CreatePosts = ({isLoggedIn}) => {
                         setPrice("")
                         setLocation("")
                         setWillDeliver(false)
+                        setCreated(true)
                     }catch (err) {
                         console.log(err);}
                 }}
@@ -83,7 +85,6 @@ const CreatePosts = ({isLoggedIn}) => {
                 <input type="submit" value="Submit" />
             </form>
         </div>
-    )
 
 }
 

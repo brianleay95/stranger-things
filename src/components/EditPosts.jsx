@@ -11,19 +11,20 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
     const [price, setPrice] = useState("");
     const [location, setLocation ] = useState("");
     const [willDeliver, setWillDeliver ] = useState(false);
+    const [edited, setEdited] = useState(false);
 
-   /*useEffect(async () => {
+   useEffect(async () => {
         setTitle(post.title)
         setDescription(post.description)
         setPrice(post.price)
         setLocation(post.location)
         setWillDeliver(post.willDeliver)
-      }, []);*/
+      }, []);
     console.log('id: ', post._id)
 
 
-    return (
-        <div className="">
+    return edited ? <div>Post Updated!</div> : 
+    <div className="">
             <form 
                 id="editPost"
                 onSubmit={async (event)=>{
@@ -35,6 +36,7 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
                         setPrice("")
                         setLocation("")
                         setWillDeliver(false)
+                        setEdited(true)
                     }catch (err) {
                         console.log(err);}
                 }}
@@ -94,7 +96,6 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
                 <input type="submit" value="Submit" />
             </form>
         </div>
-    )
 
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { editPost } from "../api";
 import { getToken } from "../auth";
 
-const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
+const EditPosts = ({post, isLoggedIn, setIsLoading}) => {
     if(!isLoggedIn) 
         return (<div className="edit-posts-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
 
@@ -28,6 +28,7 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
                 id="editPost"
                 onSubmit={async (event)=>{
                     event.preventDefault();
+                    setIsLoading(true);
                     try {
                         const results = await editPost(post._id, title, description, price, location, willDeliver)
                         setTitle("")
@@ -37,7 +38,10 @@ const EditPosts = ({post, isLoggedIn, setCurrentPage, isLoading}) => {
                         setWillDeliver(false)
                         setEdited(true)
                     }catch (err) {
-                        console.log(err);}
+                        console.log(err);
+                    } finally {
+                        setIsLoading(false);
+                    }
                 }}
                 >
                 <fieldset className="">

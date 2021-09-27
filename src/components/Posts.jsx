@@ -7,11 +7,19 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
 
   useEffect(async () => {
     let data;
-    if(isLoggedIn) {
-      data = await fetchAllPostsByUser();
+    setIsLoading(true);
+    try{
+      if(isLoggedIn) {
+        data = await fetchAllPostsByUser();
+      }
+      else {
+        data = await fetchAllPosts();
+      }
     }
-    else {
-      data = await fetchAllPosts();
+    catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
     setAllPosts(data.posts);
   }, []);

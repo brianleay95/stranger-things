@@ -13,8 +13,15 @@ const Messages = ({isLoggedIn, setIsLoading}) => {
   const [myMessages, setMyMessages] = useState([]);
 
   useEffect(async () => {
-    const data = await fetchUserMessages();
-    setMyMessages(data.messages);
+    setIsLoading(true)
+    try{
+      const data = await fetchUserMessages();
+      setMyMessages(data.messages);
+    }catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (

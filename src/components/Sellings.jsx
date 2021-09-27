@@ -8,8 +8,15 @@ const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
   const [userPosts, setUserPosts] = useState([])
 
   useEffect(async () => {
-    const data = await fetchUserPosts();
-    setUserPosts(data.posts);
+    setIsLoading(true)
+    try{
+      const data = await fetchUserPosts();
+      setUserPosts(data.posts);
+    }catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
   
   return (
@@ -26,12 +33,15 @@ const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
                     id="deletePost"
                     onClick={async (event) => {
                       event.preventDefault();
+                      setIsLoading(true)
                       try {
                         const results = await deletePostNow(post._id);
                         const data = await fetchUserPosts();
                         post.delete()
                       } catch (err) {
                         console.log(err);
+                      } finally {
+                        setIsLoading(false);
                       }
                     }}
                   >

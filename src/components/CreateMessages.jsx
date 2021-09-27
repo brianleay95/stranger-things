@@ -37,7 +37,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 <input type="submit" value="Submit" />
             </form>
         </div>
-
-}
+  );
+};
 
 export default CreateMessages;

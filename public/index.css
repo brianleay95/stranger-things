@@ -1,13 +1,15 @@
-.all-cards{
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+.all-cards {
   grid-template-columns: repeat(3, 1fr);
   display: grid;
 }
 
-.post-card{
- color:rgb(59, 65, 70);
- font-family: montserrat;
- font-size: 14px;
- box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.post-card {
+  color: rgb(59, 65, 70);
+  font-family: montserrat;
+  font-size: 14px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 40%;
   border-radius: 10px;
@@ -22,50 +24,51 @@
   justify-items: center;
 }
 .post-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
- }
-#App h1{
-    font-family: montserrat;
-    font-size: 40px;
-    color: #109467;
-    text-align: center;
-    padding: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.navbar{
+#App h1 {
+  font-family: montserrat;
+  font-size: 40px;
+  color: #109467;
+  text-align: center;
+  padding: 10px;
+}
+.navbar {
   font-family: montserrat;
   font-size: 25px;
   color: aliceblue;
   padding: 10px;
-  box-shadow: 5px 5px 0px rgb(170, 170, 170);
-  background-color: #109467; 
+  /* box-shadow: 5px 5px 0px rgb(170, 170, 170); */
+  background-color: #109467;
 }
 
-
-/* Messages */
-.posts-main-container{
+/* Messages  card*/
+.posts-main-container {
   grid-template-columns: repeat(3, 1fr);
   display: grid;
 }
 
-#App h2{
+#App h2 {
   font-family: montserrat;
   font-size: 30px;
   color: #13523d;
-  grid-column-start:1;
+  grid-column-start: 1;
   grid-column-end: 4;
   text-align: center;
-  
+
   padding: 20px;
 }
 
-.messages-main-container{
+.messages-main-container {
   grid-template-columns: repeat(3, 1fr);
   display: grid;
+  font-family: montserrat;
 }
 
-.messages-card{
- color:rgb(59, 65, 70);
- box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.messages-card {
+  color: rgb(59, 65, 70);
+  font-family: montserrat;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 40%;
   border-radius: 10px;
@@ -80,5 +83,64 @@
   justify-items: center;
 }
 .messages-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
- }
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Write Messages */
+.create-Messages{
+  width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+
+fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	/* box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); */
+  margin-top: 20px;
+	padding-top: 20px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	position: relative;
+  border-radius: 10px;
+}
+
+input {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+label{
+	font-family: montserrat;
+}
+.auth-component-main-container{
+  grid-template-columns: repeat(3, 1fr);
+}
+
+button {
+ 
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+  text-align: center;
+	position: center;
+  align-items: absolute;
+}
+button:hover, button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+} 

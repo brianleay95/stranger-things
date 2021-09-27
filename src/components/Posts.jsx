@@ -4,7 +4,6 @@ import { fetchAllPosts, deletePostNow, fetchAllPostsByUser } from "../api";
 
 const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
   const [allPosts, setAllPosts] = useState([]);
-  const [isActive, setIsActive] = useState([false]);
 
   useEffect(async () => {
     let data;
@@ -23,7 +22,7 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
       <h2>All Posts</h2>
       {allPosts.length
         ? allPosts.map((post) => {
-            return (
+            return post.active ? 
               <div className="all-cards">
                 <div key={post._id} className="post-card">
                   <h3>{post.title}</h3>
@@ -36,7 +35,6 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
                       event.preventDefault();
                       try {
                         const results = await deletePostNow(post._id);
-                        setIsActive(false);
                       } catch (err) {
                         console.log(err);
                       }
@@ -68,7 +66,7 @@ const Posts = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
 
                 </div>
               </div>
-            );
+            : null;
           })
         : null}
     </div>

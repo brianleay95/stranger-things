@@ -7,9 +7,10 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
         return (<div className="sellings-main-container">You're not logged in!  Please log in to message about this post.</div>)
 
 
-    const [content, setContent] = useState("");
+    const [ content, setContent ] = useState("");
+    const [ sent, setSent ] = useState(false)
     console.log('isLoggedin: CM: ', isLoggedIn)
-    return (
+    return sent ? <div>Message Sent!</div> :
         <div className="">
             <form 
                 id="createMessages"
@@ -18,6 +19,7 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                     try {
                         const results = await addMessages(content, postID)
                         setContent("")
+                        setSent(true)
                     }catch (err) {
                         console.log(err);}
                 }}
@@ -35,7 +37,6 @@ const CreateMessages = ({postID, isLoggedIn, setIsLoading}) => {
                 <input type="submit" value="Submit" />
             </form>
         </div>
-    )
 
 }
 

@@ -6,7 +6,7 @@ const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
         <div className="navbar">
             <span onClick={(event) => {
                 event.preventDefault()
-                setCurrentPage({name: "Posts", properties: null})
+                setCurrentPage({name: "Form Search", properties: null})
             }}> Posts
             </span>
             {isLoggedIn ? <span onClick={(event) => {

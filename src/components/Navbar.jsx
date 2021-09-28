@@ -1,44 +1,22 @@
-import React from 'react'
-import {clearCurrentUser} from "../auth"
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Navbar = ({isLoggedIn, setCurrentPage, setIsLoggedIn}) => {
-    return (
-        <div className="navbar">
-            <span onClick={(event) => {
-                event.preventDefault()
-                setCurrentPage({name: "Form Search", properties: null})
-            }}> Posts
-            </span>
-            {isLoggedIn ? <span onClick={(event) => {
-                event.preventDefault()
-                setCurrentPage({name:"Messages", properties: null})
-            }}> Messages
-            </span> : null}
-            {isLoggedIn ? <span onClick={(event) => {
-                event.preventDefault()
-                setCurrentPage({name:"Sellings", properties: null})
-            }}> Sellings
-            </span> : null}
-            {isLoggedIn ? <span onClick={(event) => {
-                event.preventDefault()
-                setCurrentPage({name:"Create Posts", properties: null})
-            }}> CreatePosts
-            </span> : null}
-            { isLoggedIn
-                ? <span onClick={(event) => {
-                    event.preventDefault()
-                    setCurrentPage({name:"Logout", properties: null})
-                    setIsLoggedIn(false)
-                    clearCurrentUser()
-                }}> Logout
-                </span>
-                : <span onClick={(event) => {
-                    event.preventDefault()
-                    setCurrentPage({name:"Login", properties: null})
-                }}> Login/Register
-                </span>}
-        </div>
-    );
+const Navbar = ({ isLoggedIn }) => {
+  return (
+    <div className="navbar">
+      <NavLink to="/">Posts</NavLink>
+      {isLoggedIn ? <NavLink to="/mymessages"> Messages</NavLink> : null}
+      {isLoggedIn ? <NavLink to="/myposts"> Sellings</NavLink> : null}
+      {isLoggedIn ? <NavLink to="/createpost"> CreatePosts</NavLink> : null}
+      {isLoggedIn ? (
+        <NavLink to="/logout">
+          Logout
+        </NavLink>
+      ) : (
+        <NavLink to="/login"> Login/Register</NavLink>
+      )}
+    </div>
+  );
 };
 
 export default Navbar;

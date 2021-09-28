@@ -19,11 +19,11 @@ import {
   EditPosts,
   Register,
   Loading,
-  FormSearch
+  FormSearch,
+  DeletedPost,
 } from "./components";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState({name: "", properties: null});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,72 +31,48 @@ const App = () => {
     <div id="App">
       <h1>Low Ball</h1>
       {/*<Header />*/}
-      <Navbar
-        isLoggedIn={isLoggedIn}
-        setCurrentPage={setCurrentPage}
-        setIsLoggedIn={setIsLoggedIn}
-      />
-      {currentPage.name === "Login" ? (
-        <Login
-          setIsLoading={setIsLoading}
-          setIsLoggedIn={setIsLoggedIn}
-          setCurrentPage={setCurrentPage}
-          isLoggedIn={isLoggedIn}
-        />
-      ) : null}
-      {currentPage.name === "Register" ? (
-        <Register
-          isLoggedIn={isLoggedIn}
-          setIsLoading={setIsLoading}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      ) : null}
-      {currentPage.name === "Sellings" ? (
-        <Sellings 
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading}
-          setCurrentPage={setCurrentPage} />
-      ) : null}
-      {currentPage.name === "Create Posts" ? (
-        <CreatePosts 
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
-      ) : null}
-      {currentPage.name === "Create Messages" ? (
-        <CreateMessages 
-          postID = {currentPage.properties}
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
-      ) : null}
-      {currentPage.name === "Messages" ? (
-        <Messages  
-          isLoggedIn={isLoggedIn} 
-          setIsLoading={setIsLoading} />
-      ) : null}
-      {currentPage.name === "Logout" ? 
-        <Logout isLoggedIn={isLoggedIn} /> 
-        : null}
-      {isLoading ? 
-        <Loading /> 
-        : null}
-      {currentPage.name === "Posts" ? 
-        <Posts 
-          isLoggedIn={isLoggedIn}
-          setCurrentPage={setCurrentPage}
-          setIsLoading={setIsLoading} /> 
-        : null}
-      {currentPage.name === "Edit Posts" ? 
-        <EditPosts 
-          post={currentPage.properties}
-          isLoggedIn={isLoggedIn}
-          setIsLoading={setIsLoading} /> 
-        : null}
-      {currentPage.name === "Form Search" ? 
-        <FormSearch 
-          isLoggedIn={isLoggedIn}
-          setCurrentPage={setCurrentPage}
-          setIsLoading={setIsLoading} /> 
-        : null}
+      <Navbar isLoggedIn={isLoggedIn} />
+      <Switch>
+        <Route path="/login">
+          <Login
+            setIsLoading={setIsLoading}
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
+        </Route>
+        <Route path="/register">
+          <Register
+            isLoggedIn={isLoggedIn}
+            setIsLoading={setIsLoading}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        </Route>
+        <Route path="/myposts">
+          <Sellings isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/createpost">
+          <CreatePosts isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/createmessage">
+          <CreateMessages isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/mymessages">
+          <Messages isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/logout">
+          <Logout setIsLoggedIn={setIsLoggedIn} />
+        </Route>
+        {isLoading ? <Loading /> : null}
+        <Route path="/editpost">
+          <EditPosts isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/" exact>
+          <FormSearch isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} />
+        </Route>
+        <Route path="/deletedpost">
+          <DeletedPost />
+        </Route>
+      </Switch>
     </div>
   );
 };

@@ -1,12 +1,13 @@
-import {storeToken, getToken} from "../auth"
+import { clearCurrentUser } from "../auth";
+import React from "react";
 
 
-const Logout = (isLoggedIn) => {
+const Logout = ( { setIsLoggedIn } ) => {
+    clearCurrentUser();
+    setIsLoggedIn(false);
     return (
         <div className="logout-confirmation">
-            { isLoggedIn
-                ? <h1>You've logged out!</h1> 
-                : <h1>Logout failed, try again</h1>}
+            <h1>You've logged out!</h1> 
         </div>
   );
 };

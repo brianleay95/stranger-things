@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { loginUser } from "../api";
-import {storeToken, getToken} from "../auth"
+import {storeToken} from "../auth"
 
-const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
+const Login = ({ setIsLoading, setIsLoggedIn, isLoggedIn}) => {
   if(isLoggedIn) 
     return (<div className="auth-component-main-container">You're logged in! Time to pitch some lowballs!</div>)
+  
+  const [userName, setUserName] = useState(""); 
+  const [password, setPassword] = useState(""); 
+  const [failed, setFailed]  = useState(false);
 
-  const [userName, setUserName] = useState(""); //remember to set default to ''
-  const [password, setPassword] = useState(""); //remember to set default to ''
-
-
-  //need to add register button and link to register page
   return (
     <div className="auth-component-main-container">
       <form
@@ -26,16 +25,20 @@ const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
             if(results.success === true) {
               storeToken(results.data.token)
               setIsLoggedIn(true)
+              setFailed(false)
             }
-            else //error message + clear text fields
+            else {//error message + clear text fields
               console.log("login error: ", results.error.message)
-            
+            }
             
             setUserName('')
             setPassword('')
 
           } catch (err) {
             console.log(err);
+            setFailed(true)
+            setUserName("")
+            setPassword("")
           } finally {
             setIsLoading(false);
           }
@@ -66,11 +69,12 @@ const Login = ({ setIsLoading, setIsLoggedIn, setCurrentPage, isLoggedIn}) => {
             }}
           />
         </fieldset>
+        {failed ? <div className="auth-component-main-container">Login failed. Username or password incorrect</div> : null }
         <button>Login</button> 
       </form>
-      <a onClick={(event) => {
-                event.preventDefault()
-                setCurrentPage({name: "Register", properties: null})}}> Don't have an account? Click here. </a>
+      <NavLink to="/register"> 
+          Don't have an account? Click here. 
+      </NavLink>
     </div>
   );
 };

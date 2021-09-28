@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { fetchAllPosts, deletePostNow, fetchAllPostsByUser } from "../api";
+import { NavLink } from 'react-router-dom'
 
-
-const FormSearch = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
+const FormSearch = ({ isLoggedIn, setIsLoading }) => {
 
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(async () => {
     let data;
-    setIsLoading(true);
     try {
       if(isLoggedIn) {
         data = await fetchAllPostsByUser();
@@ -20,9 +19,7 @@ const FormSearch = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
       setPosts(data.posts);
     }catch (err) {
       console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   }, []);
 
   function postMatches(post, text) {
@@ -56,7 +53,7 @@ const FormSearch = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
                             placeholder="Search.."
                             value={searchTerm} 
                             onChange={(event) => {
-                                setSearchTerm(event.target.value);
+                              setSearchTerm(event.target.value);
                             }}/>
                 </fieldset>
             </form>
@@ -71,39 +68,45 @@ const FormSearch = ({ isLoggedIn, setCurrentPage, setIsLoading }) => {
                   <p>{post.description}</p>
                   <p>{post.price}</p>
 
-                  {post.isAuthor ? (<button
-                    id="deletePost"
-                    onClick={async (event) => {
-                      event.preventDefault();
-                      try {
-                        const results = await deletePostNow(post._id);
-                      } catch (err) {
-                        console.log(err);
-                      }
-                    }}
-                  >
-                    Delete Post
-                  </button>): null}
-                  {post.isAuthor ? (<button
-                    id="editPost"
-                    onClick={async (event) => {
-                      event.preventDefault();
-                      setCurrentPage({name: "Edit Posts", properties: post})
-                    }}
-                  >
-                    Edit Post
-                  </button>): null}
-                  {( !isLoggedIn || !post.isAuthor) ? <span>
+                  {post.isAuthor ? <NavLink to="/deletedpost">
+                    <button
+                      id="deletePost"
+                      onClick={async (event) => {
+                        event.preventDefault();
+                        setIsLoading(true)
+                        try {
+                          const results = await deletePostNow(post._id);
+                        } catch (err) {
+                          console.log(err);
+                        }finally {
+                          setIsLoading(false);
+                        }
+                      }}>
+                      Delete Post
+                    </button>
+                  </NavLink> : null}
+
+                  {post.isAuthor ? <NavLink to="/editpost">
+                    <button
+                      id="editPost"
+                      onClick={async (event) => {
+                        event.preventDefault();
+                      }}>
+                      Edit Post
+                    </button>
+                    </NavLink>: null}
+                  {( !isLoggedIn || !post.isAuthor) ? <NavLink to={{
+                      pathname: "/editpost",
+                      state : { post: post }
+                    }}>
                     <button
                       onClick={(event) => {
                         event.preventDefault();
-                        setCurrentPage({name: "Create Messages", properties: post._id});
-                      }}
-                    >
+                      }}>
                       {" "}
                       Message about item {" "}
                     </button>
-                  </span> 
+                  </NavLink> 
                   : <div> This is your post </div> }
 
                 </div>

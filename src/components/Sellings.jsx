@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import  {fetchUserPosts, deletePostNow} from "../api"
+import { NavLink } from "react-router-dom"
 
 const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
   if(!isLoggedIn) 
@@ -29,33 +30,33 @@ const Sellings = ({isLoggedIn, setIsLoading, setCurrentPage}) => {
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <p>{post.price}</p>
-                <button
-                    id="deletePost"
-                    onClick={async (event) => {
-                      event.preventDefault();
-                      setIsLoading(true)
-                      try {
-                        const results = await deletePostNow(post._id);
-                        const data = await fetchUserPosts();
-                        post.delete()
-                      } catch (err) {
-                        console.log(err);
-                      } finally {
-                        setIsLoading(false);
-                      }
-                    }}
-                  >
-                    Delete Post
-                </button>
-                <button id='editPost'
-                  onClick={(event) => {
-                      event.preventDefault();
-                      setCurrentPage({name: "Edit Posts", properties: post});
-                    }}
-                  >
-                    {" "}
-                    Edit post{" "}
-                </button>
+                <NavLink to="/deletedpost">
+                  <button
+                      id="deletePost"
+                      onClick={async (event) => {
+                        event.preventDefault();
+                        setIsLoading(true)
+                        try {
+                          const results = await deletePostNow(post._id);
+                        } catch (err) {
+                          console.log(err);
+                        } finally {
+                          setIsLoading(false);
+                        }
+                      }}
+                    >
+                      Delete Post
+                  </button>
+                </NavLink>  
+                <NavLink to={{
+                  pathname: "/editpost",
+                  state : { post: post }
+                }}>  
+                  <button id='editPost'>
+                      {" "}
+                      Edit post{" "}
+                  </button>
+                </NavLink> 
               </div>
             : null;
           })

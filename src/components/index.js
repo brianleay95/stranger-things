@@ -9,3 +9,4 @@ export { default as CreatePosts } from './CreatePosts';
 export { default as CreateMessages } from './CreateMessages';
 export { default as EditPosts } from './EditPosts';
 export { default as FormSearch } from './FormSearch';
+export { default as DeletedPost } from './DeletedPost'

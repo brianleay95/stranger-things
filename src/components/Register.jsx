@@ -5,12 +5,15 @@ import { registerUser } from "../api";
 import { storeToken } from "../auth";
 
 const Register = ({ setIsLoading, isLoggedIn, setIsLoggedIn}) => {
-  if(isLoggedIn) 
-    return (<div className="register-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
-
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [registered, setRegistered] = useState(false);
 
+  if(isLoggedIn && !registered) 
+    return <div className="register-main-container">You're stilled logged in!  Log out before registering as a different user.</div>
+  else if (isLoggedIn && registered) 
+    return <div className="register-main-container">Account registered! Let's start pitching!</div>
+  
   return (
     <div className="register-main-container">
       <form
@@ -24,6 +27,7 @@ const Register = ({ setIsLoading, isLoggedIn, setIsLoggedIn}) => {
             if(results.success === true) {
               storeToken(results.data.token);
               setIsLoggedIn(true);
+              setRegistered(true);
             }
             else  
               console.log('register failed: ', results.error.message)

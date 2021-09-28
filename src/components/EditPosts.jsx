@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { editPost } from "../api";
-import { getToken } from "../auth";
+import { useLocation } from "react-router-dom"
 
-const EditPosts = ({post, isLoggedIn, setIsLoading}) => {
+const EditPosts = ({ isLoggedIn }) => {
     if(!isLoggedIn) 
-        return (<div className="edit-posts-main-container">You're stilled logged in!  Log out before registering as a different user.</div>)
+        return (<div className="edit-posts-main-container">You're not logged in! Log in to edit your posts.</div>)
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -12,6 +12,8 @@ const EditPosts = ({post, isLoggedIn, setIsLoading}) => {
     const [location, setLocation ] = useState("");
     const [willDeliver, setWillDeliver ] = useState(false);
     const [edited, setEdited] = useState(false);
+    const pageLocation = useLocation()
+    const { post } = pageLocation.state
 
    useEffect(async () => {
         setTitle(post.title)
@@ -28,7 +30,6 @@ const EditPosts = ({post, isLoggedIn, setIsLoading}) => {
                 id="editPost"
                 onSubmit={async (event)=>{
                     event.preventDefault();
-                    setIsLoading(true);
                     try {
                         const results = await editPost(post._id, title, description, price, location, willDeliver)
                         setTitle("")
@@ -39,9 +40,7 @@ const EditPosts = ({post, isLoggedIn, setIsLoading}) => {
                         setEdited(true)
                     }catch (err) {
                         console.log(err);
-                    } finally {
-                        setIsLoading(false);
-                    }
+                    } 
                 }}
                 >
                 <fieldset className="">

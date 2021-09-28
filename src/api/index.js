@@ -28,7 +28,6 @@ export async function fetchUserPosts() {
         "Authorization": `Bearer ${token}`,
       },
     });
-    console.log('usersellings: ', data.data.posts)
     return data.data;
   } catch (error) {
     throw error;
@@ -38,14 +37,12 @@ export async function fetchUserPosts() {
 export async function fetchUserMessages() {
   try {
     const token = getToken()
-    console.log('token: ', token)
     const { data } = await axios.get(`${BASE}/users/me`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
       },
     });
-    console.log('messages: ', data.data.messages)
     return data.data;
   } catch (error) {
     throw error;
@@ -166,7 +163,6 @@ export async function fetchAllPostsByUser() {
       },
     });
     const data = response.data;
-    console.log('fetchuser: ', data.data)
     return data.data;
   } catch (err) {
     console.log(err);
